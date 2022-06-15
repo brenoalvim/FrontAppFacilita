@@ -4,9 +4,9 @@ export default function Meta() {
   return (
     <>
       <Head>
-        <meta http-equiv="content-language" content="pt-br" />
+        <meta content="pt-br" />
 
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="IE=edge" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
