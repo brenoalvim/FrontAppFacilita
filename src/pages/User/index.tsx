@@ -29,21 +29,25 @@ export default function UserIndex() {
           <td>${data[i].name}</td>
           <td>${data[i].email}</td>
         <td>
-          <a href="">
+          <a href="Alterar/User/${data[i].id}" target="_blank">
             <img src='icon/user-edit-solid.svg'/>
           </a>
         </td>
         <td>
-          <a href="">
+          <a href="Remover/User/${data[i].id}" target="_blank">
             <img src='icon/user-times-solid.svg'/>
           </a>
         </tr>
        `
       }
     }
+
     getUserInfo()
   }, [])
 
+  function removeUser(id: any) {
+    alert(id)
+  }
   return (
     <UserContainer>
       <Meta></Meta>
