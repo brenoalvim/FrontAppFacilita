@@ -13,12 +13,11 @@ import { useEffect } from 'react'
 export default function UserIndex() {
   useEffect(() => {
     async function getUserInfo() {
-      const response = await fetch('http://127.0.0.1:8000/api/books', {
+      const response = await fetch('http://127.0.0.1:8000/api/genres', {
         method: 'GET',
         redirect: 'follow'
       })
       const responseJson = await response.json()
-      console.log(responseJson)
       renderUserTable(responseJson)
     }
 
@@ -27,18 +26,14 @@ export default function UserIndex() {
       for (let i = 0; i < data.length; i++) {
         tbody.innerHTML += `
         <tr>
-          <td>${data[i].id}</td>
-          <td>${data[i].name}</td>
-          <td>${data[i].author}</td>
-          <td>${data[i].genre}</td>
-          <td>${data[i].situation}</td>
+          <td>${data[i].type}</td>
         <td>
-          <a href="Alterar/Book/${data[i].id}" target="_blank">
+          <a href="Alterar/Genres/${data[i].id}" target="_blank">
             <img src='icon/pen-to-square-solid.svg'/>
           </a>
         </td>
         <td>
-          <a href="Remover/Book/${data[i].id}" target="_blank">
+          <a href="Remover/Genres/${data[i].id}" target="_blank">
             <img src='icon/xmark-solid.svg'/>
           </a>
         </tr>
@@ -57,17 +52,13 @@ export default function UserIndex() {
       <Meta></Meta>
       <Link />
       <Title name="User" />
-      <Header title="CRUD Livros" />
+      <Header title="CRUD Gêneros" />
       {/* <h2>CRUD usuários</h2> */}
       <div className="table-wrapper">
         <table className="fl-table">
           <thead>
             <tr>
-              <th>Nº Registro</th>
               <th>Nome</th>
-              <th>Autor</th>
-              <th>Gênero</th>
-              <th>Situação</th>
               <th>Alterar</th>
               <th>Remover</th>
             </tr>
@@ -75,7 +66,7 @@ export default function UserIndex() {
           <tbody className="tbody"></tbody>
         </table>
       </div>
-      <a href="Adicionar/Book" target={`_blank`}>
+      <a href="Adicionar/Genre" target={`_blank`}>
         <button className="addUser">+</button>
       </a>
       <style global>

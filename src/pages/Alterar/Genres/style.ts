@@ -38,12 +38,6 @@ export const Container = styled.div`
     margin-bottom: 15px;
   }
 
-  .inputs select {
-    width: 375px;
-    height: 25px;
-    margin-bottom: 15px;
-  }
-
   button{
     width: 375px;
     height: 25px;

@@ -25,9 +25,16 @@ export default function Homepage() {
               </div>
             </li>
           </a>
-          <li></li>
-          <li></li>
-          <li></li>
+          <a href="/Genre/">
+            <li>
+              <div className="icon">
+                <i className="fas fa-users"></i>
+              </div>
+              <div className="span">
+                <span>Gênero</span>
+              </div>
+            </li>
+          </a>
         </ol>
       </div>
     </HomeContainer>
