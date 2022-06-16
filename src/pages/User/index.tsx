@@ -1,72 +1,72 @@
+import Meta from '../../components/Head/Meta'
+
+import Link from '../../components/Head/Link'
+
+import Title from '../../components/Head/Title'
+
+import Header from '../../components/Header/index'
+
 import { UserContainer } from './style'
 
+import { useEffect } from 'react'
+
 export default function UserIndex() {
+  useEffect(() => {
+    async function getUserInfo() {
+      const response = await fetch('http://127.0.0.1:8000/api/clients', {
+        method: 'GET',
+        redirect: 'follow'
+      })
+      const responseJson = await response.json()
+      renderUserTable(responseJson)
+    }
+
+    function renderUserTable(data: any) {
+      const tbody = document.querySelector('.tbody')
+      for (let i = 0; i < data.length; i++) {
+        tbody.innerHTML += `
+        <tr>
+          <td>${data[i].name}</td>
+          <td>${data[i].email}</td>
+        <td>
+          <a href="">
+            <img src='icon/user-edit-solid.svg'/>
+          </a>
+        </td>
+        <td>
+          <a href="">
+            <img src='icon/user-times-solid.svg'/>
+          </a>
+        </tr>
+       `
+      }
+    }
+    getUserInfo()
+  }, [])
+
   return (
     <UserContainer>
-      <div className="table">
-        <div className="table-header">
-          <div className="header__item">
-            <a id="name" className="filter__link" href="#">
-              Name
-            </a>
-          </div>
-          <div className="header__item">
-            <a id="wins" className="filter__link filter__link--number" href="#">
-              Wins
-            </a>
-          </div>
-          <div className="header__item">
-            <a
-              id="draws"
-              className="filter__link filter__link--number"
-              href="#"
-            >
-              Draws
-            </a>
-          </div>
-          <div className="header__item">
-            <a
-              id="losses"
-              className="filter__link filter__link--number"
-              href="#"
-            >
-              Losses
-            </a>
-          </div>
-          <div className="header__item">
-            <a
-              id="total"
-              className="filter__link filter__link--number"
-              href="#"
-            >
-              Total
-            </a>
-          </div>
-        </div>
-        <div className="table-content">
-          <div className="table-row">
-            <div className="table-data">Tom</div>
-            <div className="table-data">2</div>
-            <div className="table-data">0</div>
-            <div className="table-data">1</div>
-            <div className="table-data">5</div>
-          </div>
-          <div className="table-row">
-            <div className="table-data">Dick</div>
-            <div className="table-data">1</div>
-            <div className="table-data">1</div>
-            <div className="table-data">2</div>
-            <div className="table-data">3</div>
-          </div>
-          <div className="table-row">
-            <div className="table-data">Harry</div>
-            <div className="table-data">0</div>
-            <div className="table-data">2</div>
-            <div className="table-data">2</div>
-            <div className="table-data">2</div>
-          </div>
-        </div>
+      <Meta></Meta>
+      <Link />
+      <Title name="User" />
+      <Header title="CRUD Clientes" />
+      {/* <h2>CRUD usuários</h2> */}
+      <div className="table-wrapper">
+        <table className="fl-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Alterar</th>
+              <th>Remover</th>
+            </tr>
+          </thead>
+          <tbody className="tbody"></tbody>
+        </table>
       </div>
+      <a href="Adicionar/User">
+        <button className="addUser">+</button>
+      </a>
       <style global>
         {`
           body {

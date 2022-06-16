@@ -1,90 +1,158 @@
 import styled from 'styled-components'
 
 export const UserContainer = styled.div`
-  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
-  *,
-  *:before,
-  *:after {
+  * {
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
   }
-
   body {
-    padding: 24px;
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+    background: rgba(71, 147, 227, 1);
   }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 0;
-  }
-
-  .container {
-    max-width: 1000px;
-    margin-right: auto;
-    margin-left: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-
-  .table {
-    width: 100%;
-    border: 1px solid #eeeeee;
-  }
-
-  .table-header {
-    display: flex;
-    width: 100%;
-    background: #000;
-    padding: 18px 0;
-  }
-
-  .table-row {
-    display: flex;
-    width: 100%;
-    padding: 18px 0;
-  }
-  .table-row:nth-of-type(odd) {
-    background: #eeeeee;
-  }
-
-  .table-data,
-  .header__item {
-    flex: 1 1 20%;
+  h2 {
     text-align: center;
-  }
-
-  .header__item {
+    font-size: 18px;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--dark-color);
+    font-family: "Roboto";
+    padding: 30px 0;
   }
 
-  .filter__link {
-    color: white;
-    text-decoration: none;
-    position: relative;
-    display: inline-block;
-    padding-left: 24px;
-    padding-right: 24px;
+  /* Table Styles */
+
+  .table-wrapper {
+    margin: 10px 70px 70px;
+    box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
   }
-  .filter__link::after {
-    content: '';
-    position: absolute;
-    right: -18px;
-    color: white;
+
+  tbody tr td a img{
+    width: 25px;
+  }
+
+  .fl-table {
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+  }
+
+  .fl-table td,
+  .fl-table th {
+    text-align: center;
+    padding: 8px;
+  }
+
+  .fl-table td {
+    border-right: 1px solid #f8f8f8;
     font-size: 12px;
-    top: 50%;
-    transform: translateY(-50%);
   }
-  .filter__link.desc::after {
-    content: '(desc)';
+
+  .fl-table thead th {
+    color: #ffffff;
+    background: #4fc3a1;
   }
-  .filter__link.asc::after {
-    content: '(asc)';
+
+  .fl-table thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #324960;
+  }
+
+  .fl-table tr:nth-child(even) {
+    background: #f8f8f8;
+  }
+
+  /* Responsive */
+
+  @media (max-width: 767px) {
+    .fl-table {
+      display: block;
+      width: 100%;
+    }
+    .table-wrapper:before {
+      content: 'Scroll horizontally >';
+      display: block;
+      text-align: right;
+      font-size: 11px;
+      color: white;
+      padding: 0 0 10px;
+    }
+    .fl-table thead,
+    .fl-table tbody,
+    .fl-table thead th {
+      display: block;
+    }
+    .fl-table thead th:last-child {
+      border-bottom: none;
+    }
+    .fl-table thead {
+      float: left;
+    }
+    .fl-table tbody {
+      width: auto;
+      position: relative;
+      overflow-x: auto;
+    }
+    .fl-table td,
+    .fl-table th {
+      padding: 20px 0.625em 0.625em 0.625em;
+      height: 60px;
+      vertical-align: middle;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      overflow-y: auto;
+      width: 120px;
+      font-size: 13px;
+      text-overflow: ellipsis;
+    }
+    .fl-table thead th {
+      text-align: left;
+      border-bottom: 1px solid #f7f7f9;
+    }
+    .fl-table tbody tr {
+      display: table-cell;
+    }
+    .fl-table tbody tr:nth-child(odd) {
+      background: none;
+    }
+    .fl-table tr:nth-child(even) {
+      background: transparent;
+    }
+    .fl-table tr td:nth-child(odd) {
+      background: #f8f8f8;
+      border-right: 1px solid #e6e4e4;
+    }
+    .fl-table tr td:nth-child(even) {
+      border-right: 1px solid #e6e4e4;
+    }
+    .fl-table tbody td {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+  .addUser{
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: var(--dark-color);
+    color: var(--light-color);
+    font-size: 30px;
+    bottom: 5%;
+    right: 5%;
   }
 `
