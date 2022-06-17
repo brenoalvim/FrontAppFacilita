@@ -42,11 +42,11 @@ export default function AddUser() {
     <Container>
       <Meta />
       <Link />
-      <Title name="Alterar Usuário" />
+      <Title name="Alterar Livro" />
       <div className="form">
         <div className="modal">
           <div className="title">
-            <h1>Alterar Usuário</h1>
+            <h1>Alterar Livro</h1>
           </div>
           <br />
           <div className="inputs">
@@ -55,7 +55,11 @@ export default function AddUser() {
             <br />
             <input type="text" placeholder="Autor" className="emailUser" />
             <br />
-            <input type="text" placeholder="Situação" className="situationUser" />
+            <input list="situationList" type="text" placeholder="Situação" className="situationUser" />
+            <datalist id="situationList">
+              <option value="Disponível"></option>
+              <option value="Emprestado"></option>
+            </datalist>
             <br />
             <button onClick={getValues}>Cadastrar</button>
           </div>

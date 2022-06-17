@@ -55,7 +55,7 @@ export default function AddUser() {
     const nameUser = document.querySelector('.nameUser')
     const bookUser = document.querySelector('.bookUser')
     const dateReturn = document.querySelector('.dateReturn')
-    
+
     console.log(nameUser.value, bookUser.value, dateReturn.value)
     registerNewUser(nameUser.value, bookUser.value, dateReturn.value)
   }

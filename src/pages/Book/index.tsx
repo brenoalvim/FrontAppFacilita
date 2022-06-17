@@ -56,9 +56,8 @@ export default function UserIndex() {
     <UserContainer>
       <Meta></Meta>
       <Link />
-      <Title name="User" />
+      <Title name="Book" />
       <Header title="CRUD Livros" />
-      {/* <h2>CRUD usuários</h2> */}
       <div className="table-wrapper">
         <table className="fl-table">
           <thead>
