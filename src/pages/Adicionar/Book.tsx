@@ -82,15 +82,18 @@ export default function AddUser() {
           <div className="inputs">
             <br />
             <input type="text" placeholder="Nome" className="nameUser" />
-
             <input type="text" placeholder="Autor" className="emailUser" />
-
-            <input
-              type="text"
-              placeholder="Situação"
-              className="situationUser"
-            />
-            <br />
+            <select className="situationUser" id="">
+              <option value="0" selected disabled>
+                Situação
+              </option>
+              <option value="Disponível">
+                Disponível
+              </option>
+              <option value="Emprestado">
+                Emprestado
+              </option>
+            </select>
             <select name="genre" className="selectGenre" id="">
               <option value="0" selected disabled>
                 Escolha um Gênero

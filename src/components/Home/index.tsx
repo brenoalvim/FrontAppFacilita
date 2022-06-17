@@ -5,6 +5,16 @@ export default function Homepage() {
     <HomeContainer>
       <div className="cards">
         <ol>
+          <a href="/Loan/">
+            <li>
+              <div className="icon">
+                <i className="fas fa-users"></i>
+              </div>
+              <div className="span">
+                <span>Empréstimos</span>
+              </div>
+            </li>
+          </a>
           <a href="/User/">
             <li>
               <div className="icon">
