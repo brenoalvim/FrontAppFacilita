@@ -61,12 +61,6 @@ export default function AddUser() {
     const dateReturn = document.querySelector('.dateReturn')
     const statusLoan = document.querySelector('.statusLoan')
 
-    console.log(
-      nameUser.value,
-      bookUser.value,
-      dateReturn.value,
-      statusLoan.value
-    )
     updateUser(
       nameUser.value,
       bookUser.value,
@@ -92,10 +86,48 @@ export default function AddUser() {
   }
 
   function alertUser(data: any) {
+    const statusLoan = document.querySelector('.statusLoan')
     if (data.status === 200) {
+      if (statusLoan.value === 'Devolvido') {
+        updateStatusBook()
+      }
       alert('Empréstimo alterado com sucesso')
     } else {
       alert('Erro ao alterar Empréstimo')
+    }
+  }
+
+  async function updateStatusBook() {
+    const bookUser = document.querySelector('.bookUser')
+
+    const response = await fetch(
+      `http://127.0.0.1:8000/api/bookbyname/${bookUser.value}`,
+      {
+        method: 'GET',
+        redirect: 'follow'
+      }
+    )
+
+    const responseJson = await response.json()
+
+    updateStatus(
+      responseJson[0].id,
+      responseJson[0].name,
+      responseJson[0].author
+    )
+  }
+
+  async function updateStatus(id: any, name: any, author: any) {
+    const response = await fetch(
+      `http://127.0.0.1:8000/api/books/${id}?name=${name}&author=${author}&situation=Disponível`,
+      {
+        method: 'PUT',
+        redirect: 'follow'
+      }
+    )
+
+    if (response.status == 200) {
+      console.log('Livro atualizado com sucesso')
     }
   }
 
@@ -134,7 +166,7 @@ export default function AddUser() {
               <option value="" selected disabled>
                 Status
               </option>
-              <option value="Devovido">Devolvido</option>
+              <option value="Devolvido">Devolvido</option>
               <option value="Atrasado">Atrasado</option>
               <option value="Dentro do prazo">Dentro do Prazo</option>
             </select>

@@ -31,7 +31,7 @@ export default function AddUser() {
     getUserInfo()
 
     async function getBookInfo() {
-      const response = await fetch('http://127.0.0.1:8000/api/books', {
+      const response = await fetch('http://127.0.0.1:8000/api/availablebook', {
         method: 'GET',
         redirect: 'follow'
       })
@@ -56,7 +56,6 @@ export default function AddUser() {
     const bookUser = document.querySelector('.bookUser')
     const dateReturn = document.querySelector('.dateReturn')
 
-    console.log(nameUser.value, bookUser.value, dateReturn.value)
     registerNewUser(nameUser.value, bookUser.value, dateReturn.value)
   }
 
@@ -65,6 +64,8 @@ export default function AddUser() {
     const response = await fetch(url, {
       method: 'POST'
     })
+
+    updateBook()
 
     alertUser(response)
   }
@@ -75,6 +76,36 @@ export default function AddUser() {
     } else {
       alert('ERRO! Empréstimo não cadastrado')
     }
+  }
+
+  async function updateBook() {
+    const bookUser = document.querySelector('.bookUser')
+    const bookNumber = document.querySelector('.bookNumber')
+    const bookAuthor = document.querySelector('.bookAuthor')
+
+    const response = await fetch(
+      `http://127.0.0.1:8000/api/books/${bookNumber.value}?name=${bookUser.value}&author=${bookAuthor.value}&situation=Emprestado`,
+      {
+        method: 'PUT',
+        redirect: 'follow'
+      }
+    )
+    console.log(response)
+  }
+
+  async function getIdBook() {
+    const bookUser = document.querySelector('.bookUser')
+    const bookNumber = document.querySelector('.bookNumber')
+    const bookAuthor = document.querySelector('.bookAuthor')
+    const response = await fetch(
+      `http://127.0.0.1:8000/api/bookbyname/${bookUser.value}`,
+      {
+        method: 'GET'
+      }
+    )
+    const responseJson = await response.json()
+    bookNumber.value = responseJson[0].id
+    bookAuthor.value = responseJson[0].author
   }
 
   return (
@@ -102,6 +133,19 @@ export default function AddUser() {
               type="text"
               placeholder="Livro"
               className="bookUser"
+              onChange={getIdBook}
+            />
+            <input
+              type="text"
+              placeholder="Nº Registro"
+              className="bookNumber"
+              disabled
+            />
+            <input
+              type="text"
+              placeholder="Autor"
+              className="bookAuthor"
+              disabled
             />
             <datalist id="bookList"></datalist>
             <input
